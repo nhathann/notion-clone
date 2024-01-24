@@ -11,5 +11,6 @@
     "Unpublishing",
     "usehooks",
     "zustand"
-  ]
+  ],
+  "swift.swiftEnvironmentVariables": {}
 }

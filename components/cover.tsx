@@ -1,16 +1,16 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { api } from "@/convex/_generated/api";
-import { Button } from "./ui/button";
-import { ImageIcon, X } from "lucide-react";
-import { useCoverImage } from "@/hooks/use-cover-image";
-import { useMutation } from "convex/react";
-import { useParams } from "next/navigation";
 import { Id } from "@/convex/_generated/dataModel";
+import { useCoverImage } from "@/hooks/use-cover-image";
 import { useEdgeStore } from "@/lib/edgestore";
+import { cn } from "@/lib/utils";
+import { useMutation } from "convex/react";
+import { ImageIcon, X } from "lucide-react";
+import Image from "next/image";
+import { useParams } from "next/navigation";
 import { Skeleton } from "./ui/skeleton";
+import { Button } from "./ui/button";
 
 interface CoverImageProps {
   url?: string;
@@ -23,7 +23,7 @@ export function Cover({
 }: CoverImageProps) {
 
   const params = useParams();
-  const coverImage = useCoverImage();
+  const coverImage = useCoverImage(); 
   const removeCoverImage = useMutation(api.documents.removeCoverImage);
   const { edgestore } = useEdgeStore();
 
@@ -31,7 +31,7 @@ export function Cover({
     if (url) await edgestore.publicFiles.delete({ url: url });
     removeCoverImage({ id: params.documentId as Id<"documents"> });
   };
-
+ 
   return (
     <div className={cn(
       "relative w-full h-[35vh] group",
@@ -43,7 +43,7 @@ export function Cover({
           src={url}
           fill
           alt="Cover"
-          className="object-cover"
+         className="object-cover"
         />
       )}
       {url && !preview && (
@@ -51,7 +51,7 @@ export function Cover({
         bottom-5 right-5 flex items-center gap-x-2">
           <Button
             onClick={() => coverImage.onReplace(url)}
-            className="text-muted-foreground text-xs"
+           className="text-muted-foreground text-xs"
             variant="outline"
             size="sm"
           >
@@ -60,7 +60,7 @@ export function Cover({
           </Button>
           <Button
             onClick={onRemove}
-            className="text-muted-foreground text-xs"
+           className="text-muted-foreground text-xs"
             variant="outline"
             size="sm"
           >
